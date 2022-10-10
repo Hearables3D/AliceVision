@@ -37,6 +37,10 @@ dl
 # CMake
 CMakeFiles  # intermediate folders
 
+# CMake build dirs
+tmp/
+src/aliceVision-stamp/
+
 # user files
 *.user*
 
