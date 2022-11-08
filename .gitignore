@@ -2,7 +2,10 @@
 *~
 .*.swp # vim
 *.flc # xemacs
-.DS_Store # MacOS
+
+# MacOS
+.DS_Store
+
 Thumbs.db # Windows
 *.out
 
