@@ -145,7 +145,7 @@ void computeLandmarksPerViewHistogram(const sfmData::SfMData& sfmData, BoxStats<
             if(it != nbLandmarksPerView.end())
                 ++(it->second);
             else
-                it->second = 1;
+                nbLandmarksPerView.insert(std::make_pair(viewId, 1));
         }
     }
     if(nbLandmarksPerView.empty())
