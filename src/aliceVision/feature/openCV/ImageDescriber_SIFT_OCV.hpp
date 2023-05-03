@@ -31,7 +31,7 @@ public:
    * @param[in] preset The preset configuration
    * @return True if configuration succeed.
    */
-  void setConfigurationPreset(EImageDescriberPreset preset);
+    void setConfigurationPreset(ConfigurationPreset preset);
 
   /// Parameters
   std::size_t gridSize = 4;
@@ -95,7 +95,7 @@ public:
    * @param[in] preset The preset configuration
    * @return True if configuration succeed.
    */
-  void setConfigurationPreset(EImageDescriberPreset preset) override
+  void setConfigurationPreset(ConfigurationPreset preset) override
   {
     _params.setConfigurationPreset(preset);
   }

@@ -18,9 +18,9 @@
 namespace aliceVision {
 namespace feature {
 
-void SIFT_openCV_Params::setConfigurationPreset(EImageDescriberPreset preset)
+void SIFT_openCV_Params::setConfigurationPreset(ConfigurationPreset preset)
 {
-    switch(preset)
+    switch(preset.descPreset)
     {
       case EImageDescriberPreset::LOW:
         contrastThreshold = 0.01;
@@ -66,7 +66,7 @@ bool ImageDescriber_SIFT_openCV::describe(const image::Image<unsigned char>& ima
     if(!_params.gridSize) //< If no grid filtering, use opencv to limit the number of features
       maxDetect = _params.maxTotalKeypoints;
 
-  cv::Ptr<cv::Feature2D> siftdetector = cv::xfeatures2d::SIFT::create(maxDetect,
+  cv::Ptr<cv::Feature2D> siftdetector = cv::SIFT::create(maxDetect,
                                                                       _params.nOctaveLayers,
                                                                       _params.contrastThreshold,
                                                                       _params.edgeThreshold,
