@@ -17,6 +17,8 @@ namespace feature {
 using SIFT_Regions = ScalarRegions<unsigned char,128>;
 /// Define the classic SIFT features using float representation
 using SIFT_Float_Regions = ScalarRegions<float,128>;
+/// Define the SURF Keypoint
+using SURF_Regions = ScalarRegions<unsigned char, 128>;
 /// Define the classic CCTag Keypoint
 using CCTAG_Regions = ScalarRegions<unsigned char,128>;
 /// Define the AKAZE Keypoint (with a float descriptor)

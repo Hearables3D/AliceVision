@@ -61,6 +61,11 @@ if(ALICEVISION_HAVE_OPENCV)
     list(APPEND features_files_headers openCV/ImageDescriber_SIFT_OCV.hpp)
     list(APPEND features_files_sources openCV/ImageDescriber_SIFT_OCV.cpp)
   endif()
+
+  if(ALICEVISION_HAVE_OCVSURF)
+    list(APPEND features_files_headers openCV/ImageDescriber_SURF_OCV.hpp)
+    list(APPEND features_files_sources openCV/ImageDescriber_SURF_OCV.cpp)
+  endif()
 endif()
 
 

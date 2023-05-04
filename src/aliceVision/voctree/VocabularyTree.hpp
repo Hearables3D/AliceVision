@@ -365,6 +365,9 @@ inline std::unique_ptr<IVocabularyTree> createVoctreeForDescriberType(feature::E
   case EImageDescriberType::SIFT_OCV:     res.reset(new VocabularyTree<SIFT_Regions::DescriptorT>); break;
 #endif //ALICEVISION_HAVE_OCVSIFT
   case EImageDescriberType::AKAZE_OCV:    res.reset(new VocabularyTree<AKAZE_Float_Regions::DescriptorT>); break;
+#if ALICEVISION_IS_DEFINED(ALICEVISION_HAVE_OCVSURF)
+  case EImageDescriberType::SURF_OCV:     res.reset(new VocabularyTree<SURF_Regions::DescriptorT>); break;
+#endif //ALICEVISION_HAVE_OCVSURF
 #endif //ALICEVISION_HAVE_OPENCV
 
     default: throw std::out_of_range("Invalid imageDescriber enum");
