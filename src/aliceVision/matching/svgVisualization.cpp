@@ -40,6 +40,9 @@ std::string describerTypeColor(feature::EImageDescriberType descType )
     case feature::EImageDescriberType::SIFT_OCV:       return "orange";
 #endif
     case feature::EImageDescriberType::AKAZE_OCV:      return "indigo";
+#if ALICEVISION_IS_DEFINED(ALICEVISION_HAVE_OCVSURF)
+    case feature::EImageDescriberType::SURF_OCV:       return "green";
+#endif
 #endif
 
     case feature::EImageDescriberType::UNKNOWN:        return "red";

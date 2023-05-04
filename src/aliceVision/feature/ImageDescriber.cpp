@@ -22,6 +22,9 @@
 #include <aliceVision/feature/openCV/ImageDescriber_SIFT_OCV.hpp>
 #endif //ALICEVISION_HAVE_OCVSIFT
 #include <aliceVision/feature/openCV/ImageDescriber_AKAZE_OCV.hpp>
+#if ALICEVISION_IS_DEFINED(ALICEVISION_HAVE_OCVSURF)
+#include <aliceVision/feature/openCV/ImageDescriber_SURF_OCV.hpp>
+#endif //ALICEVISION_HAVE_OCVSURF
 #endif //ALICEVISION_HAVE_OPENCV
 
 #include <boost/filesystem.hpp>
@@ -223,6 +226,9 @@ std::unique_ptr<ImageDescriber> createImageDescriber(EImageDescriberType imageDe
   case EImageDescriberType::SIFT_OCV:      describerPtr.reset(new ImageDescriber_SIFT_openCV()); break;
 #endif //ALICEVISION_HAVE_OCVSIFT
   case EImageDescriberType::AKAZE_OCV:     describerPtr.reset(new ImageDescriber_AKAZE_OCV()); break;
+#if ALICEVISION_IS_DEFINED(ALICEVISION_HAVE_OCVSURF)
+  case EImageDescriberType::SURF_OCV:      describerPtr.reset(new ImageDescriber_SURF_openCV()); break;
+#endif //ALICEVISION_HAVE_OCVSURF
 #endif //ALICEVISION_HAVE_OPENCV
     
     default: throw std::out_of_range("Invalid imageDescriber enum");

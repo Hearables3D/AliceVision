@@ -34,6 +34,9 @@ std::string EImageDescriberType_informations()
           "* sift_ocv: OpenCV implementation of SIFT describer.\n"
 #endif
           "* akaze_ocv: OpenCV implementation of A-KAZE describer.\n"
+#if ALICEVISION_IS_DEFINED(ALICEVISION_HAVE_OCVSURF)
+          "* surf_ocv: OpenCV implementation of SURF describer.\n"
+#endif
 #endif
           "";
 }
@@ -62,6 +65,9 @@ std::string EImageDescriberType_enumToString(EImageDescriberType imageDescriberT
     case EImageDescriberType::SIFT_OCV:      return "sift_ocv";
 #endif //ALICEVISION_HAVE_OCVSIFT
     case EImageDescriberType::AKAZE_OCV:     return "akaze_ocv";
+#if ALICEVISION_IS_DEFINED(ALICEVISION_HAVE_OCVSURF)
+    case EImageDescriberType::SURF_OCV:      return "surf_ocv";
+#endif //ALICEVISION_HAVE_OCVSURF
 #endif //ALICEVISION_HAVE_OPENCV
 
     case EImageDescriberType::UNKNOWN:       return "unknown";
@@ -95,6 +101,9 @@ EImageDescriberType EImageDescriberType_stringToEnum(const std::string& imageDes
   if(type == "sift_ocv")      return EImageDescriberType::SIFT_OCV;
 #endif //ALICEVISION_HAVE_OCVSIFT
   if(type == "akaze_ocv")     return EImageDescriberType::AKAZE_OCV;
+#if ALICEVISION_IS_DEFINED(ALICEVISION_HAVE_OCVSURF)
+  if(type == "sift_ocv")      return EImageDescriberType::SURF_OCV;
+#endif //ALICEVISION_HAVE_OCVSURF
 #endif //ALICEVISION_HAVE_OPENCV
 
   if(type == "unknown")       return EImageDescriberType::UNKNOWN;
