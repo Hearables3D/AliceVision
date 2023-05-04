@@ -102,7 +102,7 @@ EImageDescriberType EImageDescriberType_stringToEnum(const std::string& imageDes
 #endif //ALICEVISION_HAVE_OCVSIFT
   if(type == "akaze_ocv")     return EImageDescriberType::AKAZE_OCV;
 #if ALICEVISION_IS_DEFINED(ALICEVISION_HAVE_OCVSURF)
-  if(type == "sift_ocv")      return EImageDescriberType::SURF_OCV;
+  if(type == "surf_ocv")      return EImageDescriberType::SURF_OCV;
 #endif //ALICEVISION_HAVE_OCVSURF
 #endif //ALICEVISION_HAVE_OPENCV
 
