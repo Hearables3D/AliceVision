@@ -24,26 +24,26 @@ void SIFT_openCV_Params::setConfigurationPreset(ConfigurationPreset preset)
     {
       case EImageDescriberPreset::LOW:
         contrastThreshold = 0.01;
-        maxTotalKeypoints = 1000;
+        maxTotalKeypoints = 5000;
       break;
       case EImageDescriberPreset::MEDIUM:
         contrastThreshold = 0.005;
-        maxTotalKeypoints = 5000;
+        maxTotalKeypoints = 10000;
       break;
       case EImageDescriberPreset::NORMAL:
         contrastThreshold = 0.005;
         edgeThreshold = 15;
-        maxTotalKeypoints = 10000;
+        maxTotalKeypoints = 20000;
       break;
       case EImageDescriberPreset::HIGH:
         contrastThreshold = 0.005;
         edgeThreshold = 20;
-        maxTotalKeypoints = 20000;
+        maxTotalKeypoints = 50000;
       break;
       case EImageDescriberPreset::ULTRA:
         contrastThreshold = 0.005;
         edgeThreshold = 20;
-        maxTotalKeypoints = 40000;
+        maxTotalKeypoints = 100000;
       break;
       default:
         throw std::out_of_range("Invalid image describer preset enum");
@@ -161,7 +161,7 @@ bool ImageDescriber_SIFT_openCV::describe(const image::Image<unsigned char>& ima
   int cpt = 0;
   for(const auto& i_kp : v_keypoints)
   {
-    PointFeature feat(i_kp.pt.x, i_kp.pt.y, i_kp.size, i_kp.angle);
+    PointFeature feat(i_kp.pt.x, i_kp.pt.y, i_kp.size * 0.5, i_kp.angle);
     regionsCasted->Features().push_back(feat);
 
     Descriptor<unsigned char, 128> desc;
