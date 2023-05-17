@@ -23,27 +23,19 @@ void SURF_openCV_Params::setConfigurationPreset(ConfigurationPreset preset)
     switch(preset.descPreset)
     {
       case EImageDescriberPreset::LOW:
-        contrastThreshold = 0.01;
-        maxTotalKeypoints = 1000;
-      break;
-      case EImageDescriberPreset::MEDIUM:
-        contrastThreshold = 0.005;
         maxTotalKeypoints = 5000;
       break;
-      case EImageDescriberPreset::NORMAL:
-        contrastThreshold = 0.005;
-        edgeThreshold = 15;
+      case EImageDescriberPreset::MEDIUM:
         maxTotalKeypoints = 10000;
       break;
-      case EImageDescriberPreset::HIGH:
-        contrastThreshold = 0.005;
-        edgeThreshold = 20;
+      case EImageDescriberPreset::NORMAL:
         maxTotalKeypoints = 20000;
       break;
+      case EImageDescriberPreset::HIGH:
+        maxTotalKeypoints = 50000;
+      break;
       case EImageDescriberPreset::ULTRA:
-        contrastThreshold = 0.005;
-        edgeThreshold = 20;
-        maxTotalKeypoints = 40000;
+        maxTotalKeypoints = 100000;
       break;
       default:
         throw std::out_of_range("Invalid image describer preset enum");
@@ -61,16 +53,14 @@ bool ImageDescriber_SURF_openCV::describe(const image::Image<unsigned char>& ima
   // Create a SURF detector
   std::vector< cv::KeyPoint > v_keypoints;
   cv::Mat m_desc;
-  std::size_t maxDetect = 0; //< No max value by default
-  if(_params.maxTotalKeypoints)
-    if(!_params.gridSize) //< If no grid filtering, use opencv to limit the number of features
-      maxDetect = _params.maxTotalKeypoints;
 
-  cv::Ptr<cv::Feature2D> detector = cv::SIFT::create(maxDetect,
-                                                                      _params.nOctaveLayers,
-                                                                      _params.contrastThreshold,
-                                                                      _params.edgeThreshold,
-                                                                      _params.sigma);
+  cv::Ptr<cv::Feature2D> detector = cv::xfeatures2d::SURF::create(
+    _params.hessianThreshold,
+    _params.nOctaves,
+    _params.nOctaveLayers,
+    _params.extended,
+    _params.upright
+  );
 
   // Detect SURF keypoints
   auto detect_start = std::chrono::steady_clock::now();
@@ -78,7 +68,7 @@ bool ImageDescriber_SURF_openCV::describe(const image::Image<unsigned char>& ima
   auto detect_end = std::chrono::steady_clock::now();
   auto detect_elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(detect_end - detect_start);
 
-  ALICEVISION_LOG_TRACE("SURF: contrastThreshold: " << _params.contrastThreshold << ", edgeThreshold: " << _params.edgeThreshold << std::endl);
+  ALICEVISION_LOG_TRACE("SURF: hessianThreshold: " << _params.hessianThreshold << std::endl);
   ALICEVISION_LOG_TRACE("Detect SURF: " << detect_elapsed.count() << " milliseconds." << std::endl);
   ALICEVISION_LOG_TRACE("Image size: " << img.cols << " x " << img.rows << std::endl);
   ALICEVISION_LOG_TRACE("Grid size: " << _params.gridSize << ", maxTotalKeypoints: " << _params.maxTotalKeypoints << std::endl);
@@ -161,7 +151,7 @@ bool ImageDescriber_SURF_openCV::describe(const image::Image<unsigned char>& ima
   int cpt = 0;
   for(const auto& i_kp : v_keypoints)
   {
-    PointFeature feat(i_kp.pt.x, i_kp.pt.y, i_kp.size, i_kp.angle);
+    PointFeature feat(i_kp.pt.x, i_kp.pt.y, i_kp.size * 0.5, i_kp.angle);
     regionsCasted->Features().push_back(feat);
 
     Descriptor<unsigned char, 128> desc;
