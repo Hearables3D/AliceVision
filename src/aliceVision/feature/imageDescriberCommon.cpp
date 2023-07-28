@@ -22,6 +22,7 @@ std::string EImageDescriberType_informations()
           "* sift: Scale-invariant feature transform.\n"
           "* sift_float: SIFT stored as float.\n"
           "* sift_upright: SIFT with upright feature.\n"
+          "* float_256: Generic describer stored as 256 floats.\n"
           "* akaze: A-KAZE with floating point descriptors.\n"
           "* akaze_liop: A-KAZE with Local Intensity Order Pattern descriptors.\n"
           "* akaze_mldb: A-KAZE with Modified-Local Difference Binary descriptors.\n"
@@ -48,6 +49,8 @@ std::string EImageDescriberType_enumToString(EImageDescriberType imageDescriberT
     case EImageDescriberType::SIFT:          return "sift";
     case EImageDescriberType::SIFT_FLOAT:    return "sift_float";
     case EImageDescriberType::SIFT_UPRIGHT:  return "sift_upright";
+
+    case EImageDescriberType::FLOAT_256:     return "float_256";
 
     case EImageDescriberType::DSPSIFT:       return "dspsift";
 
@@ -84,6 +87,8 @@ EImageDescriberType EImageDescriberType_stringToEnum(const std::string& imageDes
   if(type == "sift")          return EImageDescriberType::SIFT;
   if(type == "sift_float")    return EImageDescriberType::SIFT_FLOAT;
   if(type == "sift_upright")  return EImageDescriberType::SIFT_UPRIGHT;
+
+  if(type == "float_256")     return EImageDescriberType::FLOAT_256;
 
   if(type == "dspsift")       return EImageDescriberType::DSPSIFT;
 

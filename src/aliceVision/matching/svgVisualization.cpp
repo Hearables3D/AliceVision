@@ -25,6 +25,7 @@ std::string describerTypeColor(feature::EImageDescriberType descType )
     case feature::EImageDescriberType::SIFT:           return "yellow";
     case feature::EImageDescriberType::SIFT_FLOAT:     return "yellow";
     case feature::EImageDescriberType::SIFT_UPRIGHT:   return "yellow";
+    case feature::EImageDescriberType::FLOAT_256:      return "yellow";
     case feature::EImageDescriberType::DSPSIFT:        return "yellow";
 
     case feature::EImageDescriberType::AKAZE:          return "purple";

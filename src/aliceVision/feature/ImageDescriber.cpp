@@ -10,6 +10,7 @@
 #include <aliceVision/config.hpp>
 #include <aliceVision/feature/sift/ImageDescriber_SIFT.hpp>
 #include <aliceVision/feature/sift/ImageDescriber_SIFT_vlfeatFloat.hpp>
+#include <aliceVision/feature/sift/ImageDescriber_Float256.hpp>
 #include <aliceVision/feature/sift/ImageDescriber_DSPSIFT_vlfeat.hpp>
 #include <aliceVision/feature/akaze/ImageDescriber_AKAZE.hpp>
 
@@ -209,6 +210,8 @@ std::unique_ptr<ImageDescriber> createImageDescriber(EImageDescriberType imageDe
     case EImageDescriberType::SIFT:           describerPtr.reset(new ImageDescriber_SIFT(SiftParams(), true)); break;
     case EImageDescriberType::SIFT_FLOAT:     describerPtr.reset(new ImageDescriber_SIFT_vlfeatFloat(SiftParams())); break;
     case EImageDescriberType::SIFT_UPRIGHT:   describerPtr.reset(new ImageDescriber_SIFT(SiftParams(), false)); break;
+
+    case EImageDescriberType::FLOAT_256:      describerPtr.reset(new ImageDescriber_Float256(SiftParams())); break;
 
     case EImageDescriberType::DSPSIFT:        describerPtr.reset(new ImageDescriber_DSPSIFT_vlfeat(DspSiftParams(), true)); break;
 

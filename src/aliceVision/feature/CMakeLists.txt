@@ -10,6 +10,7 @@ set(features_files_headers
   sift/ImageDescriber_SIFT.hpp
   sift/ImageDescriber_SIFT_vlfeat.hpp
   sift/ImageDescriber_SIFT_vlfeatFloat.hpp
+  sift/ImageDescriber_Float256.hpp
   sift/ImageDescriber_DSPSIFT_vlfeat.hpp
   sift/SIFT.hpp
   Descriptor.hpp

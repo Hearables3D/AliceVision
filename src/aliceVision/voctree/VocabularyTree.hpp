@@ -352,6 +352,7 @@ inline std::unique_ptr<IVocabularyTree> createVoctreeForDescriberType(feature::E
   {
     case EImageDescriberType::SIFT:       res.reset(new VocabularyTree<SIFT_Regions::DescriptorT>); break;
     case EImageDescriberType::SIFT_FLOAT: res.reset(new VocabularyTree<SIFT_Float_Regions::DescriptorT>); break;
+    case EImageDescriberType::FLOAT_256:  res.reset(new VocabularyTree<Float_256_Regions::DescriptorT>); break;
     case EImageDescriberType::AKAZE:      res.reset(new VocabularyTree<AKAZE_Float_Regions::DescriptorT>); break;
     case EImageDescriberType::AKAZE_MLDB: res.reset(new VocabularyTree<AKAZE_BinaryRegions::DescriptorT>); break;
 

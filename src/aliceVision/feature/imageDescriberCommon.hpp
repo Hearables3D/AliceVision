@@ -25,6 +25,8 @@ enum class EImageDescriberType: unsigned char
   , SIFT_UPRIGHT = 12
   , DSPSIFT = 13
 
+  , FLOAT_256 = 19
+
   , AKAZE = 20
   , AKAZE_LIOP = 21
   , AKAZE_MLDB = 22
@@ -93,6 +95,7 @@ inline float getStrongSupportCoeff(EImageDescriberType imageDescriberType)
     case EImageDescriberType::SIFT:
     case EImageDescriberType::SIFT_FLOAT:
     case EImageDescriberType::SIFT_UPRIGHT:
+    case EImageDescriberType::FLOAT_256:
     case EImageDescriberType::DSPSIFT:
     case EImageDescriberType::AKAZE:
     case EImageDescriberType::AKAZE_LIOP:
